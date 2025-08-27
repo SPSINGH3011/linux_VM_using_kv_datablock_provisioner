@@ -16,7 +16,7 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'init'
-    workingDirectory: '$(System.DefaultWorkingDirectory)/root_module/dev-env'
+    workingDirectory: 'C:\Users\hp\Downloads\my-agent\vsts-agent-win-x64-4.260.0 (1)\_work\2\s\root_module\dev-env'
     backendServiceArm: 'my-service'
     backendAzureRmOverrideSubscriptionID: '81cc1915-8d88-419e-8fa3-0178811761bd'
     backendAzureRmResourceGroupName: 'backend-rg'
