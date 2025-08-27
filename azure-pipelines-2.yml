@@ -33,10 +33,14 @@ jobs:
   displayName: manual validation
   pool: server
   steps:
-  - task: manualvalidation@1
+  - task: ManualValidation@1
     inputs:
-      notifyUsers: 'spsingh302212@gmail.com'
-      approvers: 'spsingh302212@gmail.com'
+      notifyUsers: |
+        spsingh302212@gmail.com
+        satya@tarundevops1outlook.onmicrosoft.com
+      approvers: |
+        spsingh302212@gmail.com
+        satya@tarundevops1outlook.onmicrosoft.com
 
 - job: plan
   displayName: Plan
