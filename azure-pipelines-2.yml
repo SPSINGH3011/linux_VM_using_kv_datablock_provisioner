@@ -37,10 +37,10 @@ jobs:
   - task: ManualValidation@1
     inputs:
       notifyUsers: |
-        spsingh302212@gmail.com
+        # spsingh302212@gmail.com
         satya@tarundevops1outlook.onmicrosoft.com
       approvers: |
-        spsingh302212@gmail.com
+        # spsingh302212@gmail.com
         satya@tarundevops1outlook.onmicrosoft.com
 
 - job: plan
