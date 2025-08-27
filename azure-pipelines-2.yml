@@ -1,0 +1,32 @@
+trigger: none
+
+pool: my-agent
+
+jobs:
+- job: test
+  displayName: terraform init & plan
+  steps:
+
+  - task: TerraformTask@5
+    displayName: Terraform init
+    inputs:
+      provider: 'azurerm'
+      command: 'init'
+      workingDirectory: '$(System.DefaultWorkingDirectory)\root_module\dev-env'
+      backendServiceArm: 'my-service'
+      backendAzureRmOverrideSubscriptionID: '81cc1915-8d88-419e-8fa3-0178811761bd'
+      backendAzureRmResourceGroupName: 'backend-rg'
+      backendAzureRmStorageAccountName: 'backendsta'
+      backendAzureRmContainerName: 'backendcontainer'
+      backendAzureRmKey: 'dev1.tfstate'
+  - task: TerraformTask@5
+    displayName: Terraform plan
+    inputs:
+      provider: 'azurerm'
+      command: 'plan'
+      workingDirectory: '$(System.DefaultWorkingDirectory)\root_module\dev-env'
+      environmentServiceNameAzureRM: 'my-service'
+      environmentAzureRmOverrideSubscriptionID: '81cc1915-8d88-419e-8fa3-0178811761bd'
+
+
+
