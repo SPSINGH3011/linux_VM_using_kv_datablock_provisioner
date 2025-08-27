@@ -1,5 +1,3 @@
-
-
 trigger: none
 
 pool: my-agent
@@ -12,3 +10,15 @@ steps:
   displayName: Terraform install
   inputs:
     terraformVersion: 'latest'
+
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/root_module/dev-env'
+    backendServiceArm: 'my-service'
+    backendAzureRmOverrideSubscriptionID: '81cc1915-8d88-419e-8fa3-0178811761bd'
+    backendAzureRmResourceGroupName: 'backend-rg'
+    backendAzureRmStorageAccountName: 'backendsta'
+    backendAzureRmContainerName: 'backendcontainer'
+    backendAzureRmKey: 'arvio.tfstate'
