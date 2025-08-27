@@ -29,4 +29,23 @@ jobs:
       environmentAzureRmOverrideSubscriptionID: '81cc1915-8d88-419e-8fa3-0178811761bd'
 
 
+- job: manualValidation
+  displayName: manual validation
+  steps:
+  - task: manualvalidation@1
+    inputs:
+      notifyUsers: 'spsingh302212@gmail.com'
+      approvers: 'spsingh302212@gmail.com'
 
+- job: plan
+  displayName: Plan
+  dependsOn: manualValidation
+  steps:
+  - task: TerraformTask@5
+    displayName: Terraform plan
+    inputs:
+      provider: 'azurerm'
+      command: 'plan'
+      workingDirectory: '$(System.DefaultWorkingDirectory)\root_module\dev-env'
+      environmentServiceNameAzureRM: 'my-service'
+      environmentAzureRmOverrideSubscriptionID: '81cc1915-8d88-419e-8fa3-0178811761bd'
