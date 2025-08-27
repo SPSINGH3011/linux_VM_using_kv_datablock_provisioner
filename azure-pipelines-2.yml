@@ -32,6 +32,7 @@ jobs:
 - job: manualValidation
   displayName: manual validation
   pool: server
+  dependsOn: test
   steps:
   - task: ManualValidation@1
     inputs:
