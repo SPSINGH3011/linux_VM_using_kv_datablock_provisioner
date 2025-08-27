@@ -31,6 +31,7 @@ jobs:
 
 - job: manualValidation
   displayName: manual validation
+  pool: server
   steps:
   - task: manualvalidation@1
     inputs:
@@ -41,6 +42,7 @@ jobs:
   displayName: Plan
   dependsOn: manualValidation
   steps:
+
   - task: TerraformTask@5
     displayName: Terraform plan
     inputs:
