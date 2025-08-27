@@ -6,7 +6,6 @@ jobs:
 - job: test
   displayName: terraform init & plan
   steps:
-
   - task: TerraformTask@5
     displayName: Terraform init
     inputs:
@@ -19,6 +18,7 @@ jobs:
       backendAzureRmStorageAccountName: 'backendsta'
       backendAzureRmContainerName: 'backendcontainer'
       backendAzureRmKey: 'dev1.tfstate'
+
   - task: TerraformTask@5
     displayName: Terraform plan
     inputs:
@@ -28,7 +28,6 @@ jobs:
       environmentServiceNameAzureRM: 'my-service'
       environmentAzureRmOverrideSubscriptionID: '81cc1915-8d88-419e-8fa3-0178811761bd'
 
-
 - job: manualValidation
   displayName: manual validation
   pool: server
@@ -36,23 +35,23 @@ jobs:
   steps:
   - task: ManualValidation@1
     inputs:
+      instructions: "Please review the Terraform plan before apply"
       notifyUsers: |
-        # spsingh302212@gmail.com
         satya@tarundevops1outlook.onmicrosoft.com
       approvers: |
-        # spsingh302212@gmail.com
         satya@tarundevops1outlook.onmicrosoft.com
+      onTimeout: 'reject'
+      timeout: '1d'
 
-- job: plan
-  displayName: Plan
+- job: apply
+  displayName: Terraform Apply
   dependsOn: manualValidation
   steps:
-
   - task: TerraformTask@5
-    displayName: Terraform plan
+    displayName: Terraform apply
     inputs:
       provider: 'azurerm'
-      command: 'plan'
+      command: 'apply'
       workingDirectory: '$(System.DefaultWorkingDirectory)\root_module\dev-env'
       environmentServiceNameAzureRM: 'my-service'
       environmentAzureRmOverrideSubscriptionID: '81cc1915-8d88-419e-8fa3-0178811761bd'
