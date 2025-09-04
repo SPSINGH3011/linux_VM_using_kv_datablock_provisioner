@@ -1,1 +1,1 @@
-"satya"
+satya
